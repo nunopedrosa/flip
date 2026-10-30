@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Flip">
+  <meta name="theme-color" content="#176b61">
+  <meta name="description" content="Little guides. Big imagination. Print movement templates and draw your own paper flipbook.">
+  <meta name="flipbook-version" content="1.1.0">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Laura’s Flipbook Studio</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="icon-settings" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill="none" stroke="currentColor" stroke-width="2" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 9l6 6 6-6"/></symbol>
+  </svg>
+  <header>
+    <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">▤</span><span id="brand-text">Laura’s <b>flipbook studio</b></span></a>
+    <div class="header-actions">
+      <span id="status-line" class="status" role="status"></span>
+      <button type="button" id="settings-open" class="icon-btn" aria-haspopup="dialog">
+        <svg class="icon" aria-hidden="true"><use href="#icon-settings"></use></svg>
+        <span class="sr-only" id="settings-open-label">Settings</span>
+      </button>
+      <div class="lang-switch" role="group" aria-labelledby="lang-group-label">
+        <span id="lang-group-label" class="sr-only">Language</span>
+        <button type="button" id="lang-en" class="icon-btn flag-btn" aria-pressed="true"><img src="./assets/flag-en.svg" width="28" height="18" alt="English"></button>
+        <button type="button" id="lang-pt" class="icon-btn flag-btn" aria-pressed="false"><img src="./assets/flag-pt.svg" width="28" height="18" alt="European Portuguese"></button>
+      </div>
+      <button type="button" id="install" hidden>Install app</button>
+      <button type="button" id="help" class="quiet">How it works</button>
+    </div>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="eyebrow" data-i18n="intro.eyebrow"></div>
+      <h1><span data-i18n="intro.h1"></span><br><em data-i18n="intro.h1em"></em></h1>
+      <p data-i18n="intro.p"></p>
+    </section>
+    <div class="workspace">
+      <aside class="panel card" data-card="controls">
+        <div class="card-header">
+          <div class="step-label"><span>1</span> <span data-i18n="step1"></span></div>
+          <button type="button" class="icon-btn card-toggle" data-card-toggle="controls" aria-expanded="true"><svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg><span class="sr-only">Toggle</span></button>
+        </div>
+        <div class="card-body" id="card-body-controls">
+          <h2 data-i18n="controls.movement"></h2>
+          <div id="movements" class="movement-grid"></div>
+          <label class="field"><span data-i18n="controls.title"></span><input id="title" maxlength="48"></label>
+          <div class="range-heading"><label for="duration" data-i18n="controls.duration"></label><strong id="duration-label"></strong></div>
+          <input type="range" id="duration" min="1" max="8" value="4" step="1">
+          <div class="range-ends"><span data-i18n="controls.rangeShort"></span><span data-i18n="controls.rangeLong"></span></div>
+          <label class="field"><span data-i18n="controls.cycles"></span><select id="cycles"></select></label>
+          <div class="step-label second"><span>2</span> <span data-i18n="step2"></span></div>
+          <div class="guide-row">
+            <label><span data-i18n="controls.guide"></span><select id="guide"></select></label>
+            <label><span data-i18n="controls.ink"></span><select id="darkness"></select></label>
+          </div>
+          <label class="check"><input type="checkbox" id="ground"> <span data-i18n="controls.ground"></span></label>
+          <details><summary data-i18n="controls.advanced"></summary>
+            <label class="field"><span data-i18n="controls.fps"></span><select id="fps"></select></label>
+            <p class="helper" data-i18n="controls.fpsHelp"></p>
+            <label class="field"><span data-i18n="controls.order"></span><select id="order"></select></label>
+            <p class="helper" data-i18n="controls.orderHelp"></p>
+          </details>
+        </div>
+      </aside>
+      <section class="preview-area panel card" data-card="preview">
+        <div class="card-header preview-heading">
+          <div><span class="eyebrow" data-i18n="preview.eyebrow"></span><h2 id="motion-title"></h2></div>
+          <div class="card-header-actions">
+            <span class="pill" data-i18n="preview.pill"></span>
+            <button type="button" class="icon-btn card-toggle" data-card-toggle="preview" aria-expanded="true"><svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg><span class="sr-only">Toggle</span></button>
+          </div>
+        </div>
+        <div class="card-body" id="card-body-preview">
+          <div class="stage"><div class="paper-shadow"><div id="scene" aria-label="Animation preview"></div></div>
+            <div class="stage-caption"><span data-i18n="preview.clip"></span><span data-i18n="preview.draw"></span></div>
+          </div>
+          <div class="playback">
+            <button type="button" id="play" class="play" aria-label="Play preview">▶</button>
+            <input aria-label="Preview frame" type="range" id="scrub" min="0" max="47" value="0">
+            <span id="counter">01 / 48</span>
+          </div>
+          <div class="preview-options">
+            <label class="check"><input type="checkbox" id="character"> <span data-i18n="preview.character"></span></label>
+            <span data-i18n="preview.characterNote"></span>
+          </div>
+          <p id="motion-tip" class="motion-tip helper"></p>
+          <div class="stats">
+            <div><b id="frame-count">48</b><span data-i18n="stats.drawings"></span></div>
+            <div><b id="sheet-count">6</b><span data-i18n="stats.sheets"></span></div>
+            <div><b>95 × 65 <small>mm</small></b><span data-i18n="stats.size"></span></div>
+          </div>
+          <div class="print-card">
+            <div class="step-label"><span>3</span> <span data-i18n="step3"></span></div>
+            <h2 data-i18n="print.h2"></h2>
+            <p data-i18n="print.p"></p>
+            <div class="print-actions">
+              <button type="button" id="pdf" class="primary" data-i18n="print.pdf"></button>
+              <button type="button" id="print" data-i18n="print.print"></button>
+            </div>
+            <p class="helper" data-i18n="print.note"></p>
+            <p id="save-status" class="save-status" role="status"></p>
+            <p id="message" role="status" class="helper"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="sheet-section panel card" data-card="sheets">
+      <div class="card-header">
+        <div><div class="eyebrow" data-i18n="sheets.eyebrow"></div><h2 data-i18n="sheets.h2"></h2><p class="helper" data-i18n="sheets.p"></p></div>
+        <button type="button" class="icon-btn card-toggle" data-card-toggle="sheets" aria-expanded="true"><svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg><span class="sr-only">Toggle</span></button>
+      </div>
+      <div class="card-body" id="card-body-sheets"><div id="sheets" class="sheet-list"></div></div>
+    </section>
+    <section class="assembly panel card" id="instructions" data-card="assembly">
+      <div class="card-header">
+        <div class="eyebrow" data-i18n="assembly.eyebrow"></div>
+        <button type="button" class="icon-btn card-toggle" data-card-toggle="assembly" aria-expanded="true"><svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg><span class="sr-only">Toggle</span></button>
+      </div>
+      <div class="card-body" id="card-body-assembly">
+        <h2 data-i18n="card.assembly"></h2>
+        <div class="assembly-grid">
+          <article><b>01 / DRAW</b><h3 data-i18n="assembly.a1t"></h3><p class="helper" data-i18n="assembly.a1p"></p></article>
+          <article><b>02 / CUT &amp; SORT</b><h3 data-i18n="assembly.a2t"></h3><p class="helper" data-i18n="assembly.a2p"></p></article>
+          <article><b>03 / CLIP &amp; FLIP</b><h3 data-i18n="assembly.a3t"></h3><p class="helper" data-i18n="assembly.a3p"></p></article>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <span data-i18n="footer.made"></span>
+      <div>
+        <button type="button" id="undo" class="quiet" disabled data-i18n="footer.undo"></button>
+        <button type="button" id="backup" class="quiet" data-i18n="footer.saveProject"></button>
+        <button type="button" id="restore" class="quiet" data-i18n="footer.openProject"></button>
+        <input id="file-project" type="file" accept="application/json,.json" hidden>
+        <input id="file-backup" type="file" accept="application/json,.json" hidden>
+        <button type="button" id="reset" class="quiet" data-i18n="footer.startAgain"></button>
+      </div>
+    </footer>
+  </main>
+  <div id="print-root"></div>
+
+  <div id="settings-dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+    <div class="dialog-panel">
+      <div class="dialog-header">
+        <h2 id="settings-title" data-i18n="settings.title"></h2>
+        <button type="button" id="settings-close" class="icon-btn"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg><span class="sr-only" data-i18n="settings.close"></span></button>
+      </div>
+      <div class="dialog-body">
+        <section><h3 data-i18n="settings.language"></h3>
+          <div class="lang-switch dialog-lang">
+            <button type="button" id="settings-lang-en" class="flag-btn"><img src="./assets/flag-en.svg" width="32" height="21" alt="English"><span data-i18n="header.language.en"></span></button>
+            <button type="button" id="settings-lang-pt" class="flag-btn"><img src="./assets/flag-pt.svg" width="32" height="21" alt="European Portuguese"><span data-i18n="header.language.pt"></span></button>
+          </div>
+        </section>
+        <section><h3 data-i18n="settings.data"></h3>
+          <p class="helper" data-i18n="settings.backupScope"></p>
+          <p id="backup-status" class="helper"></p>
+          <div class="dialog-actions">
+            <button type="button" id="export-backup" data-i18n="settings.exportBackup"></button>
+            <button type="button" id="import-backup" data-i18n="settings.importBackup"></button>
+          </div>
+        </section>
+        <section><h3 data-i18n="settings.install"></h3>
+          <p class="helper" data-i18n="settings.installBody"></p>
+          <p id="offline-status" class="helper"></p>
+        </section>
+        <section><h3 data-i18n="settings.updates"></h3>
+          <p id="update-status" class="helper"></p>
+          <div class="dialog-actions">
+            <button type="button" id="check-updates" data-i18n="settings.checkUpdates"></button>
+            <button type="button" id="apply-update" hidden data-i18n="settings.updateApp"></button>
+          </div>
+        </section>
+        <section><h3 data-i18n="settings.help"></h3>
+          <p class="helper" data-i18n="settings.helpBody"></p>
+          <button type="button" id="copy-diagnostics" data-i18n="settings.copyDiagnostics"></button>
+        </section>
+        <p class="version-line"><span data-i18n="settings.version"></span>: <span id="app-version"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="import-dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="import-title" hidden>
+    <div class="dialog-panel">
+      <div class="dialog-header">
+        <h2 id="import-title" data-i18n="import.title"></h2>
+        <button type="button" id="import-close" class="icon-btn"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg><span class="sr-only" data-i18n="settings.close"></span></button>
+      </div>
+      <div class="dialog-body">
+        <p id="import-summary"></p>
+        <label class="check" id="restore-prefs-wrap"><input type="checkbox" id="restore-prefs" checked> <span data-i18n="import.restorePrefs"></span></label>
+        <p id="import-prefs-note" class="helper" hidden data-i18n="import.prefsNote"></p>
+        <div class="dialog-actions">
+          <button type="button" id="import-cancel" data-i18n="import.cancel"></button>
+          <button type="button" id="import-apply" class="primary" data-i18n="import.apply"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="conflict-dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="conflict-title" hidden>
+    <div class="dialog-panel">
+      <div class="dialog-header"><h2 id="conflict-title" data-i18n="conflict.title"></h2></div>
+      <div class="dialog-body">
+        <p data-i18n="conflict.body"></p>
+        <div class="dialog-actions">
+          <button type="button" id="conflict-keep" data-i18n="conflict.keep"></button>
+          <button type="button" id="conflict-reload" data-i18n="conflict.reload"></button>
+          <button type="button" id="conflict-export" data-i18n="conflict.export"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

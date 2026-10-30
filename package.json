@@ -1,0 +1,11 @@
+{
+  "name": "flip",
+  "version": "1.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Laura's hand-drawn flipbook PWA",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node tests.mjs"
+  }
+}
