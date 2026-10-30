@@ -95,10 +95,7 @@ function applyLanguage(lang, explicit) {
   refreshLangSelects();
 }
 
-function flagMarkup(lang) {
-  const symbol = lang === 'pt-PT' ? '#flag-pt' : '#flag-en';
-  return `<svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><use href="${symbol}"></use></svg>`;
-}
+const LANG_FLAGS = { en: '🇬🇧', 'pt-PT': '🇵🇹' };
 
 function refreshLangSelects() {
   const labels = { en: t('header.language.en'), 'pt-PT': t('header.language.pt') };
@@ -107,12 +104,12 @@ function refreshLangSelects() {
     const sel = $(id);
     if (!sel) return;
     sel.querySelectorAll('option').forEach((opt) => {
-      opt.textContent = labels[opt.value];
+      const code = opt.value;
+      opt.textContent = LANG_FLAGS[code] || code;
+      opt.label = labels[code];
     });
     sel.value = current;
-  });
-  document.querySelectorAll('.lang-select-flag').forEach((el) => {
-    el.innerHTML = flagMarkup(current);
+    sel.setAttribute('aria-label', `${t('settings.language')}: ${labels[current]}`);
   });
 }
 
