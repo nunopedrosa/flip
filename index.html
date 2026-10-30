@@ -30,29 +30,13 @@
         <svg class="icon" aria-hidden="true"><use href="#icon-settings"></use></svg>
         <span class="sr-only" id="settings-open-label">Settings</span>
       </button>
-      <div class="lang-dropdown" id="lang-dropdown">
-        <span id="lang-group-label" class="sr-only" data-i18n="settings.language"></span>
-        <button type="button" class="lang-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lang-group-label">
-          <span class="lang-dropdown-value">
-            <span class="lang-dropdown-flag"></span>
-            <span class="lang-dropdown-label">English</span>
-          </span>
-          <svg class="icon lang-dropdown-chevron" aria-hidden="true"><use href="#icon-chevron"></use></svg>
-        </button>
-        <ul class="lang-dropdown-menu" role="listbox" aria-labelledby="lang-group-label" hidden>
-          <li role="presentation">
-            <button type="button" class="lang-dropdown-option" role="option" data-lang="en" aria-selected="true">
-              <span class="lang-dropdown-flag"></span>
-              <span class="lang-dropdown-option-label">English</span>
-            </button>
-          </li>
-          <li role="presentation">
-            <button type="button" class="lang-dropdown-option" role="option" data-lang="pt-PT" aria-selected="false">
-              <span class="lang-dropdown-flag"></span>
-              <span class="lang-dropdown-option-label">European Portuguese</span>
-            </button>
-          </li>
-        </ul>
+      <div class="lang-select-wrap">
+        <label class="sr-only" for="lang-select" id="lang-select-label" data-i18n="settings.language"></label>
+        <span class="lang-select-flag" aria-hidden="true"></span>
+        <select id="lang-select" aria-labelledby="lang-select-label">
+          <option value="en">English</option>
+          <option value="pt-PT">European Portuguese</option>
+        </select>
       </div>
       <button type="button" id="install" hidden>Install app</button>
       <button type="button" id="help" class="quiet">How it works</button>
@@ -177,28 +161,13 @@
       </div>
       <div class="dialog-body">
         <section><h3 data-i18n="settings.language"></h3>
-          <div class="lang-dropdown lang-dropdown-settings" id="settings-lang-dropdown">
-            <button type="button" class="lang-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="settings-title">
-              <span class="lang-dropdown-value">
-                <span class="lang-dropdown-flag"></span>
-                <span class="lang-dropdown-label">English</span>
-              </span>
-              <svg class="icon lang-dropdown-chevron" aria-hidden="true"><use href="#icon-chevron"></use></svg>
-            </button>
-            <ul class="lang-dropdown-menu" role="listbox" aria-labelledby="settings-title" hidden>
-              <li role="presentation">
-                <button type="button" class="lang-dropdown-option" role="option" data-lang="en" aria-selected="true">
-                  <span class="lang-dropdown-flag"></span>
-                  <span class="lang-dropdown-option-label">English</span>
-                </button>
-              </li>
-              <li role="presentation">
-                <button type="button" class="lang-dropdown-option" role="option" data-lang="pt-PT" aria-selected="false">
-                  <span class="lang-dropdown-flag"></span>
-                  <span class="lang-dropdown-option-label">European Portuguese</span>
-                </button>
-              </li>
-            </ul>
+          <div class="lang-select-wrap lang-select-wrap-settings">
+            <label class="sr-only" for="settings-lang-select" data-i18n="settings.language"></label>
+            <span class="lang-select-flag" aria-hidden="true"></span>
+            <select id="settings-lang-select">
+              <option value="en">English</option>
+              <option value="pt-PT">European Portuguese</option>
+            </select>
           </div>
         </section>
         <section><h3 data-i18n="settings.data"></h3>

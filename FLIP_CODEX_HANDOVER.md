@@ -88,7 +88,7 @@ Make persistence success/failure explicit. Preserve recoverable work after failu
 
 ### Settings and complete language support
 
-Add the shared **Settings gear, then Language pull-down** in the top-right, retaining both at narrow widths. The control is always a pull-down: bundled local UK/Portugal flag SVGs as visual reference on the closed control and beside each choice, with full accessible language names.
+Add the shared **Settings gear, then Language `<select>`** in the top-right, retaining both at narrow widths. Bundled local UK/Portugal flag SVG beside the select as reference; full accessible language names in the options.
 
 Provide complete **English and European Portuguese (`pt-PT`)** catalogues, available offline. Cover static and dynamic text, errors, confirmations, accessibility labels, installation help and generated print/PDF labels. Keep IDs and interchange keys stable and leave Laura's own title unchanged.
 
