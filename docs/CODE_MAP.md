@@ -11,4 +11,4 @@
 - `sw.js`: offline cache for the current release (classic worker; mirrors `version.js`).
 - `manifest.webmanifest`, `icon.svg`, `icon-192.png`, `icon-512.png`: install metadata.
 
-Version 1.1.0. Plain static files — no build, no `dist/`, no Node/npm required to run the app.
+Version 1.1.1. Plain static files — no build, no `dist/`, no Node/npm required to run the app.

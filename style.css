@@ -31,15 +31,24 @@ button, input, select { font: inherit; }
 
 button {
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--line);
   border-radius: var(--radius-control);
   background: #fffef9;
   color: var(--ink);
   padding: var(--space-2) var(--space-4);
   font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+  height: var(--touch);
   min-height: var(--touch);
   min-width: var(--touch);
+  box-sizing: border-box;
 }
+
+button[hidden] { display: none !important; }
 
 button:hover { border-color: var(--teal); background: #edf3ed; }
 
@@ -61,11 +70,6 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 
 .quiet {
   background: transparent;
-  border: 0;
-  font-size: 13px;
-  padding: var(--space-2) var(--space-3);
-  min-width: auto;
-  min-height: var(--touch);
 }
 
 .sr-only {
@@ -119,14 +123,14 @@ header {
 .header-actions {
   display: flex;
   gap: var(--space-3);
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 .lang-select-wrap {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .lang-select-wrap-settings {
@@ -134,15 +138,19 @@ header {
 }
 
 select.lang-select {
-  min-height: var(--touch);
-  min-width: var(--touch);
   width: auto;
   max-width: 4.25rem;
+  height: var(--touch);
+  min-height: var(--touch);
+  min-width: var(--touch);
+  margin: 0;
   padding: var(--space-2) var(--space-3);
   font-size: 22px;
   line-height: 1;
   text-align: center;
   text-align-last: center;
+  box-sizing: border-box;
+  align-self: flex-start;
 }
 
 .status { font-size: 12px; color: var(--teal); max-width: 12rem; }
@@ -202,7 +210,7 @@ h2 {
   gap: var(--space-4);
 }
 
-.card-header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.card-header-actions { display: flex; align-items: flex-start; gap: var(--space-2); }
 
 .card-toggle.collapsed .icon { transform: rotate(-90deg); }
 
@@ -227,7 +235,7 @@ h2 {
   font-size: 11px;
 }
 
-.movement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+.movement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); align-items: start; }
 
 .movement {
   padding: var(--space-3) var(--space-1);
@@ -235,7 +243,9 @@ h2 {
   font-weight: 650;
   background: #f9f9f2;
   border-color: transparent;
-  min-height: var(--touch);
+  height: 72px;
+  min-height: 72px;
+  flex-direction: column;
 }
 
 .movement .symbol { display: block; font: 25px Georgia, serif; margin-bottom: var(--space-1); }
@@ -381,7 +391,7 @@ summary {
 
 .playback {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-5);
   padding: var(--space-5) 0 0;
 }
@@ -444,7 +454,7 @@ summary {
 .primary { background: var(--teal); color: white; border-color: var(--teal); }
 .primary:hover { background: #124d46; color: white; }
 
-.print-actions { display: flex; gap: var(--space-3); margin-top: var(--space-5); flex-wrap: wrap; }
+.print-actions { display: flex; gap: var(--space-3); margin-top: var(--space-5); flex-wrap: wrap; align-items: flex-start; }
 
 .sheet-section {
   border-top: 1px solid var(--line);
@@ -505,7 +515,7 @@ footer {
   flex-wrap: wrap;
 }
 
-footer > div { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+footer > div { display: flex; flex-wrap: wrap; gap: var(--space-1); align-items: flex-start; }
 
 .dialog {
   position: fixed;
@@ -540,7 +550,7 @@ footer > div { display: flex; flex-wrap: wrap; gap: var(--space-1); }
 .dialog-body section { margin-bottom: var(--space-6); border-top: 1px solid var(--line); padding-top: var(--space-4); }
 .dialog-body section:first-child { border-top: 0; padding-top: 0; }
 .dialog-body h3 { margin: 0 0 var(--space-3); font-size: 14px; }
-.dialog-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.dialog-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: flex-start; }
 .version-line { font-size: 12px; color: var(--muted); margin-top: var(--space-6); }
 
 #print-root { display: none; }
