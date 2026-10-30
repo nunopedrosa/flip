@@ -1,4 +1,4 @@
-/* Service worker release constants — keep in sync with version.js */
+/* Release markers — keep APP_VERSION and RELEASE_ASSETS aligned with version.js */
 var APP_VERSION = '1.1.0';
 var RELEASE_ASSETS = [
   './',
@@ -14,9 +14,6 @@ var RELEASE_ASSETS = [
   './icon.svg',
   './icon-192.png',
   './icon-512.png',
-  './assets/flag-en.svg',
-  './assets/flag-pt.svg',
-  './assets/icons.svg',
   './sw.js',
 ];
 

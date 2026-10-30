@@ -393,5 +393,3 @@ export function createI18n(initialLang) {
     },
   };
 }
-
-export { catalogues };

@@ -1,4 +1,4 @@
-/** Bump with runtime asset changes; keep in sync with sw.js and index.html meta. */
+/** Single release marker — keep in sync with index.html meta and sw.js */
 export const APP_VERSION = '1.1.0';
 
 export const RELEASE_ASSETS = [
@@ -15,8 +15,5 @@ export const RELEASE_ASSETS = [
   './icon.svg',
   './icon-192.png',
   './icon-512.png',
-  './assets/flag-en.svg',
-  './assets/flag-pt.svg',
-  './assets/icons.svg',
   './sw.js',
 ];

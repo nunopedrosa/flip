@@ -30,8 +30,8 @@
       </button>
       <div class="lang-switch" role="group" aria-labelledby="lang-group-label">
         <span id="lang-group-label" class="sr-only">Language</span>
-        <button type="button" id="lang-en" class="icon-btn flag-btn" aria-pressed="true"><img src="./assets/flag-en.svg" width="28" height="18" alt="English"></button>
-        <button type="button" id="lang-pt" class="icon-btn flag-btn" aria-pressed="false"><img src="./assets/flag-pt.svg" width="28" height="18" alt="European Portuguese"></button>
+        <button type="button" id="lang-en" class="icon-btn flag-btn" aria-pressed="true" aria-label="English"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0l60 40M60 0L0 40" stroke="#C8102E" stroke-width="5"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/><path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="8"/></svg></button>
+        <button type="button" id="lang-pt" class="icon-btn flag-btn" aria-pressed="false" aria-label="European Portuguese"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#006600"/><rect x="24" width="36" height="40" fill="#f00"/><circle cx="24" cy="20" r="8" fill="#ffcc29" stroke="#002776" stroke-width="1.5"/></svg></button>
       </div>
       <button type="button" id="install" hidden>Install app</button>
       <button type="button" id="help" class="quiet">How it works</button>
@@ -157,8 +157,8 @@
       <div class="dialog-body">
         <section><h3 data-i18n="settings.language"></h3>
           <div class="lang-switch dialog-lang">
-            <button type="button" id="settings-lang-en" class="flag-btn"><img src="./assets/flag-en.svg" width="32" height="21" alt="English"><span data-i18n="header.language.en"></span></button>
-            <button type="button" id="settings-lang-pt" class="flag-btn"><img src="./assets/flag-pt.svg" width="32" height="21" alt="European Portuguese"><span data-i18n="header.language.pt"></span></button>
+            <button type="button" id="settings-lang-en" class="flag-btn"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/><path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="8"/></svg><span data-i18n="header.language.en"></span></button>
+            <button type="button" id="settings-lang-pt" class="flag-btn"><svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><rect width="60" height="40" fill="#006600"/><rect x="24" width="36" height="40" fill="#f00"/><circle cx="24" cy="20" r="8" fill="#ffcc29"/></svg><span data-i18n="header.language.pt"></span></button>
           </div>
         </section>
         <section><h3 data-i18n="settings.data"></h3>

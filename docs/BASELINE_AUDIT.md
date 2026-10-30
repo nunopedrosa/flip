@@ -20,7 +20,7 @@ Inspected package: Flip 1.1.0, 29 October 2026 (local working tree). Adopted bas
 
 ## Verification evidence
 
-Automated: `npm test` — motion/PDF geometry, backup parse v1/v2, PDF WinAnsi escapes, `APP_VERSION`/`sw.js`/`index.html` consistency (desktop Node, 29 Oct 2026).
+Automated regression scripts are not bundled; verify geometry, PDF, backup, and update flows manually in a browser when changing `engine.js` or `app.js`.
 
 Not verified on real Safari 12 / iPhone 6 hardware, installed PWA offline transition after interrupted update, or physical paper print/cut/flip. Report device results separately when available.
 

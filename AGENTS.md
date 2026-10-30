@@ -35,7 +35,7 @@ Read this file, `README.md`, `docs/CODE_MAP.md` and `docs/BASELINE_AUDIT.md` bef
 
 ## Checks and delivery
 
-- `npm start` serves locally at `http://localhost:8010`; `npm test` checks motion geometry, PDF page counts, order and validation. No `npm install` is needed.
+- Serve the repo root over HTTP (for example `python3 -m http.server 8010 --directory .` at `http://localhost:8010`). No Node.js, npm, or build is required.
 - Test actual PDF bytes and A4 geometry, both printing paths, partial final sheets, project import/export, offline reload and safe updates as applicable. Check 320 px layouts and EN/PT labels when localization is added.
 - Run only relevant checks. Report separately what was tested in modern desktop browsers, real iOS devices, offline and on paper.
 - Keep README, audit, code map, version and format documentation aligned. Do not mark untested behavior as passing.

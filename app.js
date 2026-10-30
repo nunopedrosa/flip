@@ -1,29 +1,9 @@
-import {
-  movements,
-  defaults,
-  clean,
-  count,
-  pose,
-  frame,
-  svgShapes,
-  sheetSVG,
-  pdf,
-} from './engine.js';
+import { movements, defaults, clean, count, pose, frame, svgShapes, sheetSVG, pdf } from './engine.js';
 import { createI18n, resolveLanguage } from './i18n.js';
 import {
-  loadProject,
-  saveProject,
-  loadPrefs,
-  savePrefs,
-  loadRevision,
-  buildBackupPayload,
-  buildProjectFile,
-  parseBackupText,
-  applyImportPreview,
-  createUndoStack,
-  readFileAsText,
-  contentFingerprint,
-  IMPORT_MAX_BYTES,
+  loadProject, saveProject, loadPrefs, savePrefs, loadRevision,
+  buildBackupPayload, buildProjectFile, parseBackupText, applyImportPreview,
+  createUndoStack, readFileAsText, contentFingerprint, IMPORT_MAX_BYTES,
 } from './storage.js';
 import { createPwaClient } from './pwa-client.js';
 import { APP_VERSION } from './version.js';
