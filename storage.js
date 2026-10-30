@@ -16,6 +16,7 @@ export const defaultPrefs = () => ({
     assembly: false,
   },
   showCharacter: true,
+  pageFlip: false,
   backupMeta: {
     lastExportedAt: null,
     contentFingerprint: null,
@@ -32,6 +33,7 @@ export function cleanPrefs(raw) {
     explicitLanguage: !!raw.explicitLanguage,
     cards,
     showCharacter: typeof raw.showCharacter === 'boolean' ? raw.showCharacter : base.showCharacter,
+    pageFlip: typeof raw.pageFlip === 'boolean' ? raw.pageFlip : base.pageFlip,
     backupMeta: {
       lastExportedAt: raw.backupMeta && raw.backupMeta.lastExportedAt ? String(raw.backupMeta.lastExportedAt) : null,
       contentFingerprint: raw.backupMeta && raw.backupMeta.contentFingerprint ? String(raw.backupMeta.contentFingerprint) : null,
@@ -112,6 +114,7 @@ export function exportablePrefs(prefs) {
     explicitLanguage: p.explicitLanguage,
     cards: p.cards,
     showCharacter: p.showCharacter,
+    pageFlip: p.pageFlip,
   };
 }
 

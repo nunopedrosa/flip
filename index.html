@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-title" content="Flip">
   <meta name="theme-color" content="#176b61">
   <meta name="description" content="Little guides. Big imagination. Print movement templates and draw your own paper flipbook.">
-  <meta name="flipbook-version" content="1.1.1">
+  <meta name="flipbook-version" content="1.1.2">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="card-body" id="card-body-preview">
-          <div class="stage"><div class="paper-shadow"><div id="scene" aria-label="Animation preview"></div></div>
+          <div class="stage"><div class="paper-tilt"><div class="paper-shadow" id="paper-hinge"><div id="scene" aria-label="Animation preview"></div></div></div>
             <div class="stage-caption"><span data-i18n="preview.clip"></span><span data-i18n="preview.draw"></span></div>
           </div>
           <div class="playback">
@@ -91,7 +91,10 @@
             <span id="counter">01 / 48</span>
           </div>
           <div class="preview-options">
-            <label class="check"><input type="checkbox" id="character"> <span data-i18n="preview.character"></span></label>
+            <div class="preview-toggles">
+              <label class="check"><input type="checkbox" id="character"> <span data-i18n="preview.character"></span></label>
+              <label class="check"><input type="checkbox" id="page-flip"> <span data-i18n="preview.pageFlip"></span></label>
+            </div>
             <span data-i18n="preview.characterNote"></span>
           </div>
           <p id="motion-tip" class="motion-tip helper"></p>

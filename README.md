@@ -23,7 +23,7 @@ Plain static site: `index.html`, `style.css`, `engine.js`, `app.js`, plus focuse
 
 ## Saving
 
-Project settings: `laura-flipbook-v1`. Device preferences: `laura-flipbook-prefs-v1`. **Export backup** / **Import backup** in Settings (v2 JSON with optional preferences). Footer **Save project** / **Open project** is a v1 settings shortcut. PDF exports cannot restore settings. Hand drawings are never stored.
+Project settings: `laura-flipbook-v1`. Device preferences: `laura-flipbook-prefs-v1` (language, preview character, page flip, card layout). **Export backup** / **Import backup** in Settings (v2 JSON with optional preferences). Footer **Save project** / **Open project** is a v1 settings shortcut. PDF exports cannot restore settings. Hand drawings are never stored.
 
 ## Deploy (host)
 

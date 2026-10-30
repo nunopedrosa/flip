@@ -1,5 +1,5 @@
 /** Single release marker — keep in sync with index.html meta and sw.js */
-export const APP_VERSION = '1.1.1';
+export const APP_VERSION = '1.1.2';
 
 export const RELEASE_ASSETS = [
   './',

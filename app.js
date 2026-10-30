@@ -137,6 +137,7 @@ function applyI18nStatic() {
   fillSelect('darkness', ['light', 'medium', 'dark'], (v) => t(`ink.${v}`));
   fillSelect('fps', ['6', '12', '24'], (v) => t(`fps.${v}`));
   fillSelect('order', ['forward', 'reverse'], (v) => t(`order.${v}`));
+  $('play').setAttribute('aria-label', t(playing ? 'preview.pause' : 'preview.play'));
   document.querySelectorAll('[data-card-toggle]').forEach((btn) => {
     const card = btn.getAttribute('data-card-toggle');
     const expanded = btn.getAttribute('aria-expanded') === 'true';
@@ -158,6 +159,7 @@ function controls() {
   }
   $('ground').checked = state.ground;
   $('character').checked = prefs.showCharacter;
+  $('page-flip').checked = !!prefs.pageFlip;
 }
 
 function renderScene() {
@@ -209,9 +211,30 @@ function applyCardCollapse() {
   });
 }
 
+function prefersReducedMotion() {
+  return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+function clearHinge() {
+  const hinge = $('paper-hinge');
+  if (hinge) hinge.classList.remove('flipping');
+}
+
+function playHinge() {
+  if (!prefs.pageFlip || prefersReducedMotion()) return;
+  const hinge = $('paper-hinge');
+  if (!hinge) return;
+  const duration = Math.round(Math.min((1000 / state.fps) * 0.85, 160));
+  hinge.style.setProperty('--flip-ms', duration + 'ms');
+  hinge.classList.remove('flipping');
+  void hinge.offsetWidth;
+  hinge.classList.add('flipping');
+}
+
 function stopPlayback() {
   playing = false;
   cancelAnimationFrame(timer);
+  clearHinge();
   $('play').textContent = '▶';
   $('play').setAttribute('aria-label', t('preview.play'));
 }
@@ -221,6 +244,7 @@ function tick(ts) {
   if (ts - last >= 1000 / state.fps) {
     index = (index + 1) % count(state);
     renderScene();
+    playHinge();
     last = ts;
   }
   timer = requestAnimationFrame(tick);
@@ -371,6 +395,12 @@ function bindEvents() {
     prefs.showCharacter = $('character').checked;
     savePrefs(prefs);
     renderScene();
+  });
+
+  $('page-flip').addEventListener('change', () => {
+    prefs.pageFlip = $('page-flip').checked;
+    savePrefs(prefs);
+    if (!prefs.pageFlip) clearHinge();
   });
 
   $('play').onclick = () => {
