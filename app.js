@@ -106,7 +106,8 @@ function refreshLangSelects() {
     sel.querySelectorAll('option').forEach((opt) => {
       const code = opt.value;
       opt.textContent = LANG_FLAGS[code] || code;
-      opt.label = labels[code];
+      opt.removeAttribute('label');
+      opt.title = labels[code];
     });
     sel.value = current;
     sel.setAttribute('aria-label', `${t('settings.language')}: ${labels[current]}`);
