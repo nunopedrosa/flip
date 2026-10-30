@@ -100,6 +100,14 @@ function syncLangSelects() {
   const value = i18n.lang === 'pt-PT' ? 'pt-PT' : 'en';
   $('lang-select').value = value;
   $('settings-lang-select').value = value;
+  updateLangFlags();
+}
+
+function updateLangFlags() {
+  const symbol = i18n.lang === 'pt-PT' ? '#flag-pt' : '#flag-en';
+  const markup = `<svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><use href="${symbol}"></use></svg>`;
+  $('lang-flag').innerHTML = markup;
+  $('settings-lang-flag').innerHTML = markup;
 }
 
 function refreshLangSelectLabels() {

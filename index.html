@@ -19,6 +19,8 @@
     <symbol id="icon-settings" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path fill="none" stroke="currentColor" stroke-width="2" d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></symbol>
     <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 6l12 12M18 6 6 18"/></symbol>
     <symbol id="icon-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="flag-en" viewBox="0 0 60 40"><rect width="60" height="40" fill="#012169"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0l60 40M60 0L0 40" stroke="#C8102E" stroke-width="5"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/><path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="8"/></symbol>
+    <symbol id="flag-pt" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006600"/><rect x="24" width="36" height="40" fill="#ff0000"/><circle cx="24" cy="20" r="8" fill="#ffcc29" stroke="#002776" stroke-width="1.5"/></symbol>
   </svg>
   <header>
     <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">▤</span><span id="brand-text">Laura’s <b>flipbook studio</b></span></a>
@@ -28,8 +30,9 @@
         <svg class="icon" aria-hidden="true"><use href="#icon-settings"></use></svg>
         <span class="sr-only" id="settings-open-label">Settings</span>
       </button>
-      <label class="lang-select-wrap" id="lang-group-label">
+      <label class="lang-control" id="lang-group-label">
         <span class="sr-only" data-i18n="settings.language"></span>
+        <span id="lang-flag" class="lang-flag" aria-hidden="true"><svg class="flag" viewBox="0 0 60 40"><use href="#flag-en"></use></svg></span>
         <select id="lang-select" class="lang-select" aria-labelledby="lang-group-label">
           <option value="en">English</option>
           <option value="pt-PT">European Portuguese</option>
@@ -158,10 +161,13 @@
       </div>
       <div class="dialog-body">
         <section><h3 data-i18n="settings.language"></h3>
-          <select id="settings-lang-select" class="lang-select lang-select-settings" aria-labelledby="settings-title">
-            <option value="en">English</option>
-            <option value="pt-PT">European Portuguese</option>
-          </select>
+          <div class="lang-control lang-control-settings">
+            <span id="settings-lang-flag" class="lang-flag" aria-hidden="true"><svg class="flag" viewBox="0 0 60 40"><use href="#flag-en"></use></svg></span>
+            <select id="settings-lang-select" class="lang-select lang-select-settings" aria-labelledby="settings-title">
+              <option value="en">English</option>
+              <option value="pt-PT">European Portuguese</option>
+            </select>
+          </div>
         </section>
         <section><h3 data-i18n="settings.data"></h3>
           <p class="helper" data-i18n="settings.backupScope"></p>

@@ -1,6 +1,6 @@
 # Code map
 
-- `index.html`: screen layout, Settings/import/conflict dialogs, inline SVG icons and flags.
+- `index.html`: screen layout, Settings/import/conflict dialogs, inline SVG icons and UK/PT flag symbols for the language control.
 - `style.css`: layout, print rules, dialogs, shared baseline spacing.
 - `engine.js`: settings normalization, motion geometry, SVG sheets, WinAnsi PDF output.
 - `i18n.js`: English and European Portuguese catalogues; language resolution.

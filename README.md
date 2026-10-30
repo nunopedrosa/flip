@@ -25,6 +25,17 @@ Plain static site: `index.html`, `style.css`, `engine.js`, `app.js`, plus focuse
 
 Project settings: `laura-flipbook-v1`. Device preferences: `laura-flipbook-prefs-v1`. **Export backup** / **Import backup** in Settings (v2 JSON with optional preferences). Footer **Save project** / **Open project** is a v1 settings shortcut. PDF exports cannot restore settings. Hand drawings are never stored.
 
+## Deploy (host)
+
+Publication is a **separate explicit action** on the server. The app repo is [github.com/nunopedrosa/flip](https://github.com/nunopedrosa/flip); default checkout **`~/flip`**, public web root **`~/flip.basecentral.link`**.
+
+```bash
+mkdir -p ~/flip.basecentral.link
+sh ~/flip/scripts/deploy.sh
+```
+
+The script clones or `git pull --ff-only`s the checkout, then copies **runtime files only** (`index.html`, `style.css`, `app.js`, `engine.js`, `i18n.js`, `storage.js`, `pwa-client.js`, `version.js`, `manifest.webmanifest`, icons, `sw.js`). It does not publish `docs/`, `scripts/`, or other development files. Override paths with `FLIP_CHECKOUT` and `FLIP_WEB_ROOT` if needed.
+
 ## Development notes
 
-Read `AGENTS.md`, `docs/SHARED_PWA_RULES.md`, `docs/CODE_MAP.md`, and `docs/BASELINE_AUDIT.md`. For HTTPS hosting later, publish only these runtime files — not private notes or tooling.
+Read `AGENTS.md`, `../pwa/AGENTS.md` (shared baseline), `docs/SHARED_PWA_RULES.md`, `docs/CODE_MAP.md`, and `docs/BASELINE_AUDIT.md`. For HTTPS hosting, publish only the runtime files listed above.

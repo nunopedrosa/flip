@@ -36,6 +36,11 @@ else
     git -C "$checkout" pull --ff-only || fail 'git pull --ff-only failed.'
 fi
 
+if [ -n "$(git -C "$checkout" status --porcelain)" ]; then
+    fail 'Checkout has local changes; commit or discard them before deploying.'
+fi
+
+# Must match version.js RELEASE_ASSETS (omit the "./" entry).
 published_assets='index.html style.css app.js engine.js i18n.js storage.js pwa-client.js version.js manifest.webmanifest icon.svg icon-192.png icon-512.png sw.js'
 
 for asset in $published_assets; do
