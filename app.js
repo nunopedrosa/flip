@@ -92,13 +92,24 @@ function applyLanguage(lang, explicit) {
   applyI18nStatic();
   render();
   refreshSettingsPanels();
-  updateLangButtons();
+  refreshLangSelectLabels();
+  syncLangSelects();
 }
 
-function updateLangButtons() {
-  const en = i18n.lang === 'en';
-  $('lang-en').setAttribute('aria-pressed', en ? 'true' : 'false');
-  $('lang-pt').setAttribute('aria-pressed', en ? 'false' : 'true');
+function syncLangSelects() {
+  const value = i18n.lang === 'pt-PT' ? 'pt-PT' : 'en';
+  $('lang-select').value = value;
+  $('settings-lang-select').value = value;
+}
+
+function refreshLangSelectLabels() {
+  const enOpt = t('header.language.en');
+  const ptOpt = t('header.language.pt');
+  for (const id of ['lang-select', 'settings-lang-select']) {
+    const sel = $(id);
+    sel.options[0].textContent = enOpt;
+    sel.options[1].textContent = ptOpt;
+  }
 }
 
 function applyI18nStatic() {
@@ -425,10 +436,11 @@ function bindEvents() {
 
   $('help').onclick = () => $('instructions').scrollIntoView({ behavior: 'smooth' });
 
-  $('lang-en').onclick = () => applyLanguage('en', true);
-  $('lang-pt').onclick = () => applyLanguage('pt-PT', true);
-  $('settings-lang-en').onclick = () => applyLanguage('en', true);
-  $('settings-lang-pt').onclick = () => applyLanguage('pt-PT', true);
+  function onLangSelectChange() {
+    applyLanguage(this.value, true);
+  }
+  $('lang-select').addEventListener('change', onLangSelectChange);
+  $('settings-lang-select').addEventListener('change', onLangSelectChange);
 
   $('settings-open').onclick = () => {
     settingsTrigger = $('settings-open');
