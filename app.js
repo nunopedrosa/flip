@@ -1,4 +1,4 @@
-import { movements, defaults, clean, count, pose, frame, svgShapes, sheetSVG, pdf } from './engine.js';
+import { movements, defaults, clean, count, pose, frame, svgShapes, bindingLabelSvg, sheetSVG, pdf } from './engine.js';
 import { createI18n, resolveLanguage } from './i18n.js';
 import {
   loadProject, saveProject, loadPrefs, savePrefs, loadRevision,
@@ -172,7 +172,7 @@ function renderScene() {
   }
   const binding = t('sheet.binding');
   const frameLabel = t('preview.frame', { n: index + 1, total: count(state) });
-  $('scene').innerHTML = `<svg viewBox="0 0 95 65" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${frameLabel}"><rect width="95" height="65" fill="#fffefa"/><rect width="15" height="65" fill="#eeeee6"/><path d="M15 2V63" stroke="#c7cec2" stroke-width=".2" stroke-dasharray="1 1"/><text x="4" y="8" font-family="sans-serif" font-size="2.5" fill="#738271">${String(index + 1).padStart(2, '0')}</text><text transform="translate(7 40) rotate(-90)" font-family="sans-serif" font-size="1.8" letter-spacing=".7" fill="#879481">${binding}</text>${svgShapes(frame(state, index))}${character}</svg>`;
+  $('scene').innerHTML = `<svg viewBox="0 0 95 65" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${frameLabel}"><rect width="95" height="65" fill="#fffefa"/><rect width="15" height="65" fill="#eeeee6"/><path d="M15 2V63" stroke="#c7cec2" stroke-width=".2" stroke-dasharray="1 1"/><text x="4" y="8" font-family="sans-serif" font-size="2.5" fill="#738271">${String(index + 1).padStart(2, '0')}</text>${bindingLabelSvg(binding, { fontFamily: 'sans-serif' })}${svgShapes(frame(state, index))}${character}</svg>`;
   $('scrub').value = index;
   $('counter').textContent = `${String(index + 1).padStart(2, '0')} / ${count(state)}`;
 }
@@ -211,20 +211,16 @@ function applyCardCollapse() {
   });
 }
 
-function prefersReducedMotion() {
-  return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-}
-
 function clearHinge() {
   const hinge = $('paper-hinge');
   if (hinge) hinge.classList.remove('flipping');
 }
 
 function playHinge() {
-  if (!prefs.pageFlip || prefersReducedMotion()) return;
+  if (!prefs.pageFlip) return;
   const hinge = $('paper-hinge');
   if (!hinge) return;
-  const duration = Math.round(Math.min((1000 / state.fps) * 0.85, 160));
+  const duration = Math.round(Math.min((1000 / state.fps) * 0.92, 220));
   hinge.style.setProperty('--flip-ms', duration + 'ms');
   hinge.classList.remove('flipping');
   void hinge.offsetWidth;

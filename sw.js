@@ -1,5 +1,5 @@
 /* Release markers — keep APP_VERSION and RELEASE_ASSETS aligned with version.js */
-var APP_VERSION = '1.1.2';
+var APP_VERSION = '1.1.5';
 var RELEASE_ASSETS = [
   './',
   './index.html',

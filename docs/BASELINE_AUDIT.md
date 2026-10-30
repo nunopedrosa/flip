@@ -1,6 +1,6 @@
 # Shared PWA baseline adoption audit
 
-Inspected package: Flip 1.1.2, 30 October 2026 (local working tree). Adopted baseline: 2026-10-27, decision set 6 ([`../pwa/AGENTS.md`](../../pwa/AGENTS.md) when present). No exceptions were approved.
+Inspected package: Flip 1.1.5, 30 October 2026 (local working tree). Adopted baseline: 2026-10-27, decision set 6 ([`../pwa/AGENTS.md`](../../pwa/AGENTS.md) when present). No exceptions were approved.
 
 | Group | Status | Evidence and remaining work |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ Inspected package: Flip 1.1.2, 30 October 2026 (local working tree). Adopted bas
 
 ## Verification evidence
 
-Manual browser checks recommended when changing `engine.js`, `app.js`, or release markers. On 30 October 2026 a modern desktop browser checked the optional page hinge: it plays at 6, 12 and 24 pages per second, stays off while scrubbing, and stays off when reduced motion is requested. Not verified on real Safari 12 / iPhone 6 hardware, interrupted update on device, or physical paper.
+Manual browser checks recommended when changing `engine.js`, `app.js`, or release markers. On 30 October 2026 a modern desktop browser checked the optional page hinge: with the checkbox on, the page lifts during playback at 12 pages per second, including when reduced motion is requested, and the lift stays off while scrubbing. Not verified on real Safari 12 / iPhone 6 hardware, interrupted update on device, or physical paper.
 
 ## Next priorities
 

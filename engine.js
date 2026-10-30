@@ -133,8 +133,28 @@ export function svgShapes(shapes) {
     .join('');
 }
 
+const BINDING_LABEL_SIZE = 1.8;
+const BINDING_LABEL_TRACK = 0.7;
+
+export function bindingLabelLength(text, size = BINDING_LABEL_SIZE, track = BINDING_LABEL_TRACK) {
+  return String(text).length * (size * 0.58 + track);
+}
+
+/** Vertical binding-strip label, centred along the 65 mm frame edge (language-length aware). */
+export function bindingLabelSvg(text, opts = {}) {
+  const size = opts.size || BINDING_LABEL_SIZE;
+  const track = opts.track || BINDING_LABEL_TRACK;
+  const x = opts.x === undefined ? 7.5 : opts.x;
+  const centerY = opts.centerY === undefined ? 32.5 : opts.centerY;
+  const y = centerY + bindingLabelLength(text, size, track) / 2;
+  const fill = opts.fill || '#879481';
+  const family = opts.fontFamily || 'Arial,sans-serif';
+  return `<text transform="translate(${x} ${y}) rotate(-90)" text-anchor="start" font-family="${family}" font-size="${size}" letter-spacing="${track}" fill="${fill}">${esc(text)}</text>`;
+}
+
 export function defaultSheetLabels() {
   return {
+    binding: 'BINDING SPACE',
     clip: 'CLIP',
     calibration: '50 mm - measure after printing',
     footer: 'A4 / 100% / single-sided / 95 x 65 mm pages',
@@ -171,6 +191,9 @@ export function pageShapes(s, page, labels) {
       shapes.push(v);
     }
     texts.push({ x: dx + 3, y: dy + 8, size: 2.4, text: String(i + 1).padStart(2, '0') });
+    if (L.binding) {
+      texts.push({ kind: 'binding', text: L.binding, x: dx + 7.5, centerY: dy + 32.5 });
+    }
     texts.push({ x: dx + 3, y: dy + 59, size: 1.8, text: L.clip });
   }
   for (let c = 0; c <= 2; c++) shapes.push(line(10 + c * 95, 16.5, 10 + c * 95, 280.5, '#929292', 0.15));
@@ -191,7 +214,9 @@ export function sheetSVG(s, p, labels) {
   const texts = parts.texts;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 297"><rect width="210" height="297" fill="white"/>${shapes.map((o) => (o.kind === 'rect'
     ? `<rect x="${o.x}" y="${o.y}" width="${o.w}" height="${o.h}" fill="${o.fill}"/>`
-    : svgShapes([o]))).join('')}${texts.map((o) => `<text x="${o.x}" y="${o.y}" font-size="${o.size}" font-family="Arial,sans-serif" fill="#555">${esc(o.text)}</text>`).join('')}</svg>`;
+    : svgShapes([o]))).join('')}${texts.map((o) => (o.kind === 'binding'
+    ? bindingLabelSvg(o.text, { x: o.x, centerY: o.centerY, fill: '#879481' })
+    : `<text x="${o.x}" y="${o.y}" font-size="${o.size}" font-family="Arial,sans-serif" fill="#555">${esc(o.text)}</text>`)).join('')}</svg>`;
 }
 
 export function pdfEscapeWinAnsi(text) {
@@ -236,7 +261,10 @@ export function pdf(s, labels) {
         stream += `${color(o.fill || o.color)} rg ${num(x + r)} ${num(y)} m ${num(x + r)} ${num(y + k)} ${num(x + k)} ${num(y + r)} ${num(x)} ${num(y + r)} c ${num(x - k)} ${num(y + r)} ${num(x - r)} ${num(y + k)} ${num(x - r)} ${num(y)} c ${num(x - r)} ${num(y - k)} ${num(x - k)} ${num(y - r)} ${num(x)} ${num(y - r)} c ${num(x + k)} ${num(y - r)} ${num(x + r)} ${num(y - k)} ${num(x + r)} ${num(y)} c f\n`;
       }
     }
-    for (const t of texts) stream += `0.33 g BT /F1 ${num(t.size)} Tf ${num(t.x)} ${num(297 - t.y)} Td (${pdfEscapeWinAnsi(t.text)}) Tj ET\n`;
+    for (const t of texts) {
+      if (t.kind === 'binding' || t.size === undefined) continue;
+      stream += `0.33 g BT /F1 ${num(t.size)} Tf ${num(t.x)} ${num(297 - t.y)} Td (${pdfEscapeWinAnsi(t.text)}) Tj ET\n`;
+    }
     const content = objects.length;
     objects.push(`<< /Length ${stream.length} >>\nstream\n${stream}endstream`);
     const page = objects.length;
