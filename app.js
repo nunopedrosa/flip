@@ -92,32 +92,68 @@ function applyLanguage(lang, explicit) {
   applyI18nStatic();
   render();
   refreshSettingsPanels();
-  refreshLangSelectLabels();
-  syncLangSelects();
+  refreshLangDropdowns();
 }
 
-function syncLangSelects() {
-  const value = i18n.lang === 'pt-PT' ? 'pt-PT' : 'en';
-  $('lang-select').value = value;
-  $('settings-lang-select').value = value;
-  updateLangFlags();
+function flagMarkup(lang) {
+  const symbol = lang === 'pt-PT' ? '#flag-pt' : '#flag-en';
+  return `<svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><use href="${symbol}"></use></svg>`;
 }
 
-function updateLangFlags() {
-  const symbol = i18n.lang === 'pt-PT' ? '#flag-pt' : '#flag-en';
-  const markup = `<svg class="flag" viewBox="0 0 60 40" aria-hidden="true"><use href="${symbol}"></use></svg>`;
-  $('lang-flag').innerHTML = markup;
-  $('settings-lang-flag').innerHTML = markup;
+function refreshLangDropdowns() {
+  const labels = { en: t('header.language.en'), 'pt-PT': t('header.language.pt') };
+  const current = i18n.lang === 'pt-PT' ? 'pt-PT' : 'en';
+  document.querySelectorAll('.lang-dropdown').forEach((root) => {
+    const flagTrigger = root.querySelector('.lang-dropdown-trigger .lang-dropdown-flag');
+    const labelTrigger = root.querySelector('.lang-dropdown-trigger .lang-dropdown-label');
+    if (flagTrigger) flagTrigger.innerHTML = flagMarkup(current);
+    if (labelTrigger) labelTrigger.textContent = labels[current];
+    root.querySelectorAll('.lang-dropdown-option').forEach((btn) => {
+      const lang = btn.getAttribute('data-lang');
+      btn.setAttribute('aria-selected', lang === current ? 'true' : 'false');
+      const optLabel = btn.querySelector('.lang-dropdown-option-label');
+      const optFlag = btn.querySelector('.lang-dropdown-flag');
+      if (optLabel) optLabel.textContent = labels[lang];
+      if (optFlag) optFlag.innerHTML = flagMarkup(lang);
+    });
+  });
 }
 
-function refreshLangSelectLabels() {
-  const enOpt = t('header.language.en');
-  const ptOpt = t('header.language.pt');
-  for (const id of ['lang-select', 'settings-lang-select']) {
-    const sel = $(id);
-    sel.options[0].textContent = enOpt;
-    sel.options[1].textContent = ptOpt;
-  }
+function closeAllLangDropdowns() {
+  document.querySelectorAll('.lang-dropdown').forEach((root) => {
+    const menu = root.querySelector('.lang-dropdown-menu');
+    const trigger = root.querySelector('.lang-dropdown-trigger');
+    if (menu) menu.hidden = true;
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    root.classList.remove('open');
+  });
+}
+
+function bindLangDropdowns() {
+  document.querySelectorAll('.lang-dropdown').forEach((root) => {
+    const trigger = root.querySelector('.lang-dropdown-trigger');
+    const menu = root.querySelector('.lang-dropdown-menu');
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasOpen = root.classList.contains('open');
+      closeAllLangDropdowns();
+      if (!wasOpen) {
+        menu.hidden = false;
+        trigger.setAttribute('aria-expanded', 'true');
+        root.classList.add('open');
+      }
+    });
+    root.querySelectorAll('.lang-dropdown-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyLanguage(btn.getAttribute('data-lang'), true);
+        closeAllLangDropdowns();
+      });
+    });
+  });
+  document.addEventListener('click', () => closeAllLangDropdowns());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllLangDropdowns();
+  });
 }
 
 function applyI18nStatic() {
@@ -444,11 +480,7 @@ function bindEvents() {
 
   $('help').onclick = () => $('instructions').scrollIntoView({ behavior: 'smooth' });
 
-  function onLangSelectChange() {
-    applyLanguage(this.value, true);
-  }
-  $('lang-select').addEventListener('change', onLangSelectChange);
-  $('settings-lang-select').addEventListener('change', onLangSelectChange);
+  bindLangDropdowns();
 
   $('settings-open').onclick = () => {
     settingsTrigger = $('settings-open');

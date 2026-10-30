@@ -12,7 +12,7 @@ Read this file, `README.md`, `docs/CODE_MAP.md` and `docs/BASELINE_AUDIT.md` bef
 - This package is standalone static HTML, CSS and JavaScript. Serve the repo root runtime files (`index.html` and siblings); no build, account, backend, dependency installation or ChatGPT hosting is required.
 - Keep current work local. Do not publish, configure hosting, change sharing or push to a remote repository unless the user explicitly asks.
 - No analytics, telemetry, third-party runtime assets or personal-data uploads. Bundle all runtime assets for offline use.
-- Use the shared baseline's complete English and European Portuguese requirement, top-right **Settings** then **Language** (bundled UK/Portugal flag SVGs beside a dropdown with full accessible language names), portability, controlled updates and visual conventions. Missing implementation is recorded in the audit.
+- Use the shared baseline's complete English and European Portuguese requirement, top-right **Settings** then **Language pull-down** (bundled UK/Portugal flag SVG as reference on the control and each choice, plus full accessible language names), portability, controlled updates and visual conventions. Missing implementation is recorded in the audit.
 - Host deployment is separate from the central toolbox: [`scripts/deploy.sh`](scripts/deploy.sh) copies runtime files only to the public web directory when explicitly run on the host (see README). Do not deploy without an explicit request.
 
 ## Flipbook domain

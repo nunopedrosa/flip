@@ -6,7 +6,7 @@ Inspected package: Flip 1.1.0, 30 October 2026 (local working tree). Adopted bas
 | --- | --- | --- |
 | Local operation and privacy | Partial | Static bundled runtime, no upload or login. Release cache protocol in `sw.js`; real iPhone installed/offline tests still outstanding. |
 | Settings and help | Implemented | Top-right Settings gear then language control; Settings sections (language, backups, install/offline, updates, help/privacy, version). |
-| Languages | Implemented | EN + pt-PT in `i18n.js`; hybrid header/Settings control (bundled flag SVG + dropdown with full names); immediate switch. Device/layout verification at 320px still manual. |
+| Languages | Implemented | EN + pt-PT in `i18n.js`; Language pull-down in header and Settings (flag SVG reference + full names in trigger and menu); immediate switch. Device/layout verification at 320px still manual. |
 | Backup and restore | Implemented | v1 project + v2 backup with preferences, import preview, restore-preferences default on, backup freshness metadata, explicit save status. |
 | Installation | Partial | Manifest, local icons, in-app install help. Real iOS Home Screen verification still required. |
 | Updates | Partial | Running/pending caches, check/apply UI, throttled checks. Production CDN/cache headers not verified. |
