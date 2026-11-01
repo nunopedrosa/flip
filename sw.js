@@ -1,6 +1,7 @@
 /* Release markers — keep APP_VERSION and RELEASE_ASSETS aligned with version.js */
-var APP_VERSION = '1.1.5';
+var APP_VERSION = '1.1.6';
 var RELEASE_ASSETS = [
+  './shared-controls.css', './shared-icons.svg','./shared-chevron.svg',
   './',
   './index.html',
   './style.css',

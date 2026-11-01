@@ -39,3 +39,7 @@ The script clones or `git pull --ff-only`s the checkout, then copies **runtime f
 ## Development notes
 
 Read `AGENTS.md`, `../pwa/AGENTS.md` (shared baseline), `docs/SHARED_PWA_RULES.md`, `docs/CODE_MAP.md`, and `docs/BASELINE_AUDIT.md`. For HTTPS hosting, publish only the runtime files listed above.
+
+## Shared deployment command (2026-11-01)
+
+See [the current deployment contract](docs/SHARED_DEPLOYMENT.md) and `scripts/deploy-profile.sh`. This supersedes older script flags, SSH-only wrappers and broad deletion instructions below/above; hosting coordinates and app-specific private/release requirements still apply. No deployment is authorized by source changes.

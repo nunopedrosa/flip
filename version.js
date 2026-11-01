@@ -1,7 +1,8 @@
 /** Single release marker — keep in sync with index.html meta and sw.js */
-export const APP_VERSION = '1.1.5';
+export const APP_VERSION = '1.1.6';
 
 export const RELEASE_ASSETS = [
+  './shared-controls.css', './shared-icons.svg','./shared-chevron.svg',
   './',
   './index.html',
   './style.css',

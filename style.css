@@ -683,3 +683,7 @@ footer > div { display: flex; flex-wrap: wrap; gap: var(--space-1); align-items:
     -webkit-print-color-adjust: exact;
   }
 }
+
+/* Shared controls 1.0.0: app-owned screen adapters. */
+@media screen {
+}
